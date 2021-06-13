@@ -1,8 +1,14 @@
-import { lazy, Suspense } from 'react'; 
+import { lazy, Suspense } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import UserRoute from './components/Routes/UserRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+const Home = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/Login'));
+const UserDashboard = lazy(() => import('./pages/auth/UserDashboard'));
+const Register = lazy(() => import('./pages/Register'));
 
 function App() {
   return (
@@ -14,7 +20,10 @@ function App() {
       <ToastContainer />
       <Router>
         <Switch>
-          <p>Hello for App</p>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <UserRoute exact path="/dashboard" component={UserDashboard} />
         </Switch>
       </Router>
     </Suspense>
