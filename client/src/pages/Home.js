@@ -4,6 +4,7 @@ import Sidebar from '../components/Sidebar';
 import HeroSection from '../components/HeroSection';
 import About from '../components/About';
 import Services from '../components/Services';
+import Footer from '../components/Footer';
 
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +20,7 @@ const Home = () => {
       <HeroSection />
       <About />
       <Services />
+      <Footer />
     </>
   )
 }
