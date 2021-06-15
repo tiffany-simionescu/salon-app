@@ -12,7 +12,7 @@ import {
 
 const Sidebar = ({ isOpen, toggle }) => {
   return (
-    <SidebarContainer isOpen={isOpen} onClick={toggle}>
+    <SidebarContainer { ...isOpen } onClick={toggle}>
       <Icon onClick={toggle}>
         <CloseIcon />
       </Icon>

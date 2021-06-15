@@ -122,30 +122,6 @@ export const Button = styled.button`
   }
 `;
 
-export const GoogleButton = styled.button`
-  color: #060F13;
-  border: 3px solid #33BBBF;
-  background-image: linear-gradient(30deg, #33BBBF 50%, transparent 50%);
-  background-size: 230%;
-  background-repeat: no-repeat;
-  background-position: 0%;
-  transition: background 400ms ease-in-out;
-  border-radius: 50px;
-  white-space: nowrap;
-  padding: 12px 30px;
-  cursor:pointer;
-  text-decoration: none;
-  width: 80%;
-  height: 3rem;
-  margin: 20px auto;
-
-  &:hover {
-    background-position: 100%;
-    color: #33BBBF;
-    transition: 400ms ease-in-out;
-  }
-`;
-
 export const LoginLink = styled(Link)`
   color: #fff;
   text-decoration: none;

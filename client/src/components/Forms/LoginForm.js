@@ -10,7 +10,7 @@ import {
   LoginText
 } from './LoginFormElements';
 
-const LoginForm = ({ handleSubmit, googleLogin, setEmail, setPassword, isInvalid }) => {
+const LoginForm = ({ handleSubmit, setEmail, setPassword, isInvalid }) => {
   return (
     <LoginContainer onSubmit={handleSubmit}>
       <LoginWrap>
@@ -27,7 +27,6 @@ const LoginForm = ({ handleSubmit, googleLogin, setEmail, setPassword, isInvalid
           placeholder="Password"
         />
         <Button disabled={isInvalid}>Login</Button>
-        <GoogleButton onClick={googleLogin}>Login with Google</GoogleButton>
         <LoginText>
           Need an Account?<br /><br />
           <LoginLink to="/register">Register</LoginLink>
