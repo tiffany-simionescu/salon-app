@@ -9,6 +9,7 @@ const Home = lazy(() => import('./pages/Home'));
 const Login = lazy(() => import('./pages/Login'));
 const UserDashboard = lazy(() => import('./pages/auth/UserDashboard'));
 const Register = lazy(() => import('./pages/Register'));
+const RegisterComplete = lazy(() => import('./pages/RegisterComplete'));
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/register/complete" component={RegisterComplete} />
           <UserRoute exact path="/dashboard" component={UserDashboard} />
         </Switch>
       </Router>

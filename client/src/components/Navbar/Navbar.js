@@ -36,27 +36,27 @@ const Navbar = ({ toggle }) => {
   return (
     <>
     <IconContext.Provider value={{ color: '#fff' }}>
-      <Nav scrollNav={scrollNav}>
+      <Nav { ...scrollNav}>
         <NavbarContainer>
-          <NavLogo scrollNav={scrollNav} to="/" onClick={toggleHome}>Sleek Hair Salon</NavLogo>
+          <NavLogo { ...scrollNav } to="/" onClick={toggleHome}>Sleek Hair Salon</NavLogo>
           <MobileIcon onClick={toggle}>
-          {/* scrollNav={scrollNav} style={{ color: `${({scrollNav}) => (scrollNav ? '#fff' : '#060F13')}` }} */}
-            <FaBars scrollNav={scrollNav} style={{ color: scrollNav ? '#fff' : '#060F13'}} />
+          {/* { ...scrollNav } style={{ color: `${({scrollNav}) => (scrollNav ? '#fff' : '#060F13')}` }} */}
+            <FaBars { ...scrollNav } style={{ color: scrollNav ? '#fff' : '#060F13'}} />
           </MobileIcon>
           <NavMenu>
             <NavItem>
               <NavLinks to="about"
-                scrollNav={scrollNav}
+                { ...scrollNav }
                 smooth={true} 
                 duration={500} 
                 spy={true} 
                 exact='true' 
                 offset={-80}
               >About</NavLinks>
-            </NavItem>
+              </NavItem>
             <NavItem>
               <NavLinks to="services"
-                scrollNav={scrollNav}
+                { ...scrollNav }
                 smooth={true} 
                 duration={500} 
                 spy={true} 
@@ -66,7 +66,7 @@ const Navbar = ({ toggle }) => {
             </NavItem>
             <NavItem>
               <NavLinks to="team"
-                scrollNav={scrollNav}
+                { ...scrollNav }
                 smooth={true} 
                 duration={500} 
                 spy={true} 
@@ -76,7 +76,7 @@ const Navbar = ({ toggle }) => {
             </NavItem>
             <NavItem>
               <NavLinks to="specials"
-                scrollNav={scrollNav}
+                { ...scrollNav }
                 smooth={true} 
                 duration={500} 
                 spy={true} 
@@ -86,7 +86,7 @@ const Navbar = ({ toggle }) => {
             </NavItem>
             <NavItem>
               <NavLinks to="contact"
-                scrollNav={scrollNav}
+                { ...scrollNav }
                 smooth={true} 
                 duration={500} 
                 spy={true} 
