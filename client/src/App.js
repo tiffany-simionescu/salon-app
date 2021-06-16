@@ -13,6 +13,7 @@ const Login = lazy(() => import('./pages/Login'));
 const UserDashboard = lazy(() => import('./pages/auth/UserDashboard'));
 const Register = lazy(() => import('./pages/Register'));
 const RegisterComplete = lazy(() => import('./pages/RegisterComplete'));
+const Appointment = lazy(() => import('./pages/Appointment'));
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/register/complete" component={RegisterComplete} />
+          <Route exact path="/appointment" component={Appointment} />
           <UserRoute exact path="/dashboard" component={UserDashboard} />
         </Switch>
       </Router>

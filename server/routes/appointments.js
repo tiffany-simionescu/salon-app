@@ -14,7 +14,7 @@ const {
 } = require('../controllers/team');
 
 // routes
-router.post('/appointments', authCheck, create);
+router.post('/appointments', create);
 router.get('/appointments', authCheck, list);
 router.get('/appointments/:appointmentId', authCheck, read);
 router.put('/appointments/:appointmentId', authCheck, update);
