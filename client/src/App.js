@@ -10,10 +10,13 @@ import { currentUser } from './functions/auth';
 
 const Home = lazy(() => import('./pages/Home'));
 const Login = lazy(() => import('./pages/Login'));
-const UserDashboard = lazy(() => import('./pages/auth/UserDashboard'));
 const Register = lazy(() => import('./pages/Register'));
 const RegisterComplete = lazy(() => import('./pages/RegisterComplete'));
 const Appointment = lazy(() => import('./pages/Appointment'));
+
+const UserDashboard = lazy(() => import('./pages/auth/UserDashboard'));
+const AllTeam = lazy(() => import('./pages/auth/team/AllTeam'));
+const AllServices = lazy(() => import('./pages/auth/services/AllServices'));
 
 function App() {
   const dispatch = useDispatch();
@@ -59,6 +62,8 @@ function App() {
           <Route exact path="/register/complete" component={RegisterComplete} />
           <Route exact path="/appointment" component={Appointment} />
           <UserRoute exact path="/dashboard" component={UserDashboard} />
+          <UserRoute exact path="/dashboard/team" component={AllTeam} />
+          <UserRoute exact path="/dashboard/services" component={AllServices} />
         </Switch>
       </Router>
     </Suspense>

@@ -54,12 +54,6 @@ const AppointmentForm = ({
               onChange={handlePhoneChange}
               placeholder="Phone Number"
             />
-            <AppointmentInput
-              type="number" 
-              value={phone}
-              onChange={handlePhoneChange}
-              placeholder="Phone Number"
-            />
           </AppointmentLeftContainer>
           <AppointmentRightContainer>
             <AppointmentDatePicker
