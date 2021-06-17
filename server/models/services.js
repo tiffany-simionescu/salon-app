@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const serviceSchema = new mongoose.Schema(
   {
-    name: {
+    serviceName: {
       type: String,
       trim: true,
       // required: 'Service Name is required',

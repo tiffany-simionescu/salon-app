@@ -12,7 +12,7 @@ import {
 const ServicesForm = ({ 
   handleSubmit,
   handleNameChange,
-  name,
+  serviceName,
   isInvalid
 }) => {
   return (
@@ -22,7 +22,7 @@ const ServicesForm = ({
         <ServicesInputContainer>
             <ServicesInput
               type="text"
-              value={name}
+              value={serviceName}
               onChange={handleNameChange} 
               placeholder="Name"
               autoFocus

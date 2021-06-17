@@ -3,12 +3,12 @@ const { ObjectId } = mongoose.Schema;
 
 const appointmentSchema = new mongoose.Schema(
   {
-    name: {
+    clientName: {
       type: String,
       trim: true,
       // required: 'Client Name is required',
     },
-    email: {
+    clientEmail: {
       type: String,
       trim: true,
       // required: 'Client Email is required',
@@ -43,4 +43,4 @@ const appointmentSchema = new mongoose.Schema(
   {timestamps: true}
 );
 
-module.exports = mongoose.model('Appointments', appointmentSchema);
+module.exports = mongoose.model('Appointment', appointmentSchema);

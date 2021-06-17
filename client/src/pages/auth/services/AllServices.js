@@ -32,7 +32,7 @@ const AllServices = () => {
     getServices()
       .then(res => {
         setServices(res.data)
-        console.log(res);
+        console.log(res.data);
       });
   };
 
@@ -70,7 +70,7 @@ const AllServices = () => {
           {services.map(service => (
             <SingleServiceContainer key={service._id}>
               <AllServicesName>
-                Name: {service.name}
+                Name: {service.serviceName}
               </AllServicesName>
               <AllServicesLink 
                 to={`/dashboard/services/${service.slug}`}

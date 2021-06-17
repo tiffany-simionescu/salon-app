@@ -3,8 +3,8 @@ const slugify = require('slugify');
 
 exports.create = async (req, res) => {
   try {
-    const { name } = req.body;
-    res.json(await new Services({ name, slug: slugify(name) }).save());
+    const { serviceName } = req.body;
+    res.json(await new Services({ serviceName, slug: slugify(serviceName) }).save());
   } catch (err) {
     res.status(400).send('Create service failed')
   }
@@ -20,11 +20,11 @@ exports.read = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  const { name } = req.body;
+  const { serviceName } = req.body;
   try {
     const updated = await Services.findOneAndUpdate(
       { slug: req.params.slug }, 
-      { name, slug: slugify(name) },
+      { serviceName, slug: slugify(serviceName) },
       { new: true }
     );
     res.json(updated);

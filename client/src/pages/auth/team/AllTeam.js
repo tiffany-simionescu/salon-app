@@ -10,10 +10,18 @@ import {
   AllTeamText
 } from './AllTeamElements';
 import UserNavbar from '../../../components/Navbar/UserNavbar';
-import { getTeamMembers } from '../../../functions/dashboard';
+import { 
+  getTeamMembers, 
+  removeTeamMember 
+} from '../../../functions/dashboard';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const AllTeam = () => {
   const [teamMembers, setTeamMembers] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const { user } = useSelector((state) => ({ ...state }));
 
   useEffect(() => {
     loadTeam();
@@ -25,6 +33,24 @@ const AllTeam = () => {
         setTeamMembers(res.data)
         console.log(res);
       });
+  };
+
+  const handleRemove = async (slug) => {
+    if (window.confirm("Are you sure you want to delete?")) {
+      setLoading(true);
+      removeTeamMember(user.token, slug)
+      .then(res => {
+        setLoading(false);
+        toast.error(`Team member ${res.data.name} was deleted`)
+        loadTeam();
+      })
+      .catch(err => {
+        if (err.response.status === 400) {
+          setLoading(false);
+          toast.error(err.response.data);
+        }
+      });
+    }
   };
 
   return (
@@ -43,7 +69,7 @@ const AllTeam = () => {
                 Img: {member.img}
               </AllTeamText>
               <AllTeamName>
-                Name: {member.name}
+                Name: {member.memberName}
               </AllTeamName>
               <AllTeamText>
                 Instagram: {member.instagram}

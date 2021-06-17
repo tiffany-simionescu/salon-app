@@ -16,11 +16,14 @@ const TeamForm = ({
   handleInstagramChange,
   handleBioChange,
   handleMemberServicesChange,
-  name,
+  handleCheckChange,
+  memberName,
   img,
   instagram,
   bio,
+  services,
   memberServices,
+  checked,
   isInvalid
 }) => {
   return (
@@ -37,7 +40,7 @@ const TeamForm = ({
             />
             <TeamInput
               type="text"
-              value={name}
+              value={memberName}
               onChange={handleNameChange} 
               placeholder="Name"
               autoFocus
@@ -55,12 +58,23 @@ const TeamForm = ({
               placeholder="About Team Member"
             />
             {/* Select multiple services */}
-            <TeamInput
+
+            {/* <TeamInput
               type="text" 
               value={memberServices}
               onChange={handleMemberServicesChange}
               placeholder="Service"
-            />
+            /> */}
+            {services.map((s) => (
+              <input 
+                key={s._id}
+                id={s._id}
+                type="checkbox"
+                value={s._id}
+                checked={checked}
+                onChange={handleMemberServicesChange}
+              />
+            ))}
         </TeamInputContainer>
         <Button disabled={isInvalid}>Add Team Member</Button>
         <TeamLink to="/dashboard">Cancel</TeamLink>

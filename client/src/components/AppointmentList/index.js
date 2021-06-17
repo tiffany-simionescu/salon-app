@@ -24,7 +24,7 @@ const AppointmentList = ({ appointments, handleRemove }) => {
               Phone: {appointment.phone}
             </AppointmentText>
             <AppointmentText>
-              Date: {appointment.date.toLocaleDateString()}
+              Date: {appointment.date}
             </AppointmentText>
             <AppointmentText>
               Time: {appointment.time}

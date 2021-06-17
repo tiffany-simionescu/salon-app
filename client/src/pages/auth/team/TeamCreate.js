@@ -18,7 +18,7 @@ import {
 } from './TeamCreateElements';
 
 const TeamCreate = () => {
-  const [name, setName] = useState('');
+  const [memberName, setMemberName] = useState('');
   // Change for cloudinary
   const [img, setImg] = useState('');
   const [instagram, setInstagram] = useState('');
@@ -27,6 +27,7 @@ const TeamCreate = () => {
   const [loading, setLoading] = useState(false);
   const [teamMembers, setTeamMembers] = useState([]);
   const [services, setServices] = useState([]);
+  const [checked, setChecked] = useState(false);
 
   const { user } = useSelector((state) => ({ ...state }));
 
@@ -47,15 +48,15 @@ const TeamCreate = () => {
     e.preventDefault();
     setLoading(true);
 
-    createTeamMember(user.token, { name, img, instagram, bio, memberServices })
+    createTeamMember(user.token, { memberName, img, instagram, bio, memberServices })
     .then(res => {
       setLoading(false);
-      setName('');
+      setMemberName('');
       setImg('');
       setInstagram('');
       setBio('');
       setMemberServices([]);
-      toast.success(`The team member, ${name}, was created`);
+      toast.success(`The team member, ${memberName}, was created`);
       loadTeamMembers();
     })
     .catch(err => {
@@ -66,26 +67,8 @@ const TeamCreate = () => {
     });
   };
 
-  const handleRemove = async (slug) => {
-    if (window.confirm("Are you sure you want to delete?")) {
-      setLoading(true);
-      removeTeamMember(user.token, slug)
-      .then(res => {
-        setLoading(false);
-        toast.error(`Team member ${res.data.name} was deleted`)
-        loadTeamMembers();
-      })
-      .catch(err => {
-        if (err.response.status === 400) {
-          setLoading(false);
-          toast.error(err.response.data);
-        }
-      });
-    }
-  };
-
   const handleNameChange = (e) => {
-    setName(e.target.value);
+    setMemberName(e.target.value);
   };
 
   const handleImgChange = (e) => {
@@ -100,12 +83,20 @@ const TeamCreate = () => {
     setBio(e.target.value);
   };
 
+  const handleCheckChange = () => {
+    setChecked(!checked);
+  }
+
   const handleMemberServicesChange = (e) => {
-    setMemberServices(e.target.value);
+    setChecked(!checked);
+    if (checked) {
+      setMemberServices(e.target.value);
+    }
+    console.log(e.target.value);
   };
 
-  const isInvalid = name === '' ||
-    name.length < 2 ||
+  const isInvalid = memberName === '' ||
+    memberName.length < 2 ||
     img === '' ||
     instagram === '' ||
     bio === '' ||
@@ -136,10 +127,13 @@ const TeamCreate = () => {
             handleInstagramChange={handleInstagramChange}
             handleBioChange={handleBioChange}
             handleMemberServicesChange={handleMemberServicesChange}
-            name={name}
+            handleCheckChange={handleCheckChange}
+            memberName={memberName}
             img={img}
             instagram={instagram}
             bio={bio}
+            services={services}
+            checked={checked}
             memberServices={memberServices}
             isInvalid={isInvalid}
           />

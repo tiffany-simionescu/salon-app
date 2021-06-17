@@ -3,7 +3,7 @@ const { ObjectId } = mongoose.Schema;
 
 const teamSchema = new mongoose.Schema(
   {
-    name: {
+    memberName: {
       type: String,
       trim: true,
       // required: 'Name is required',

@@ -16,7 +16,7 @@ import {
 } from './ServiceCreateElements';
 
 const ServiceCreate = () => {
-  const [name, setName] = useState('');
+  const [serviceName, setServiceName] = useState('');
   const [loading, setLoading] = useState(false);
   const [services, setServices] = useState([]);
 
@@ -24,6 +24,7 @@ const ServiceCreate = () => {
 
   useEffect(() => {
     loadServices();
+    console.log('getServices --> ', services);
   }, []);
 
   const loadServices = () => {
@@ -34,11 +35,11 @@ const ServiceCreate = () => {
     e.preventDefault();
     setLoading(true);
 
-    createService(user.token, { name })
+    createService(user.token, { serviceName })
     .then(res => {
       setLoading(false);
-      setName('');
-      toast.success(`${name} service was created`);
+      setServiceName('');
+      toast.success(`${serviceName} service was created`);
       loadServices();
     })
     .catch(err => {
@@ -50,10 +51,10 @@ const ServiceCreate = () => {
   };
 
   const handleNameChange = (e) => {
-    setName(e.target.value);
+    setServiceName(e.target.value);
   };
 
-  const isInvalid = name === '' || name.length < 2;
+  const isInvalid = serviceName === '' || serviceName.length < 2;
 
   return (
     <ServiceCreateContainer>
@@ -76,7 +77,7 @@ const ServiceCreate = () => {
           <ServicesForm 
             handleSubmit={handleSubmit}
             handleNameChange={handleNameChange}
-            name={name}
+            serviceName={serviceName}
             isInvalid={isInvalid}
           />
         </ServiceCreateContent>

@@ -11,7 +11,7 @@ const {
   read,
   update,
   remove
-} = require('../controllers/team');
+} = require('../controllers/services');
 
 // routes
 router.post('/services', authCheck, create);
