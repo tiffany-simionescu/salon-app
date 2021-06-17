@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import {
   UserNavbarContainer,
+  UserNavbarWrap,
+  UserNavbarItem,
+  UserNavbarLink,
 } from './UserNavbarElements';
 
 const UserNavbar = () => {

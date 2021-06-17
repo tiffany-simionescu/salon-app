@@ -1,13 +1,10 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import bg from '../../images/loginBg.jpeg';
+// import bg from '../../images/loginBg.jpeg';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
 
 export const TeamContainer = styled.form`
-  background-image: url(${bg});
-  background-size: cover;
-  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -172,11 +169,4 @@ export const TeamDatePicker = styled(DatePicker)`
 
 export const TeamInputContainer = styled.div`
   display: flex;
-`;
-
-export const TeamLeftContainer = styled.div`
-  margin-left: 50px;
-`;
-
-export const TeamRightContainer = styled.div`
 `;

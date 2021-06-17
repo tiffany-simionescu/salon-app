@@ -17,6 +17,7 @@ const teamSchema = new mongoose.Schema(
       index: true,
     },
     img: String,
+    // img: [],
     instagram: String,
     bio: String,
     services: [

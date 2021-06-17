@@ -3,10 +3,12 @@ import {
   AppointmentContainer,
   AppointmentWrap,
   AppointmentName,
-  AppointmentText
+  AppointmentText,
+  AppointmentLink,
+  AppointmentDelete
 } from './AppointmentListElements';
 
-const AppointmentList = ({ appointments }) => {
+const AppointmentList = ({ appointments, handleRemove }) => {
   return (
     <>
       {appointments.map((appointment) => (
@@ -33,6 +35,14 @@ const AppointmentList = ({ appointments }) => {
             <AppointmentText>
               Service: {appointment.service}
             </AppointmentText>
+            <AppointmentLink 
+              to={`/dashboard/appointment/${appointment._id}`}
+            >
+              Edit
+            </AppointmentLink>
+            <AppointmentDelete 
+              onClick={() => handleRemove(appointment._id)}
+            />
           </AppointmentWrap>
         </AppointmentContainer>
       ))}

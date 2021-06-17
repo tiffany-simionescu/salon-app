@@ -16,6 +16,7 @@ const Appointment = lazy(() => import('./pages/Appointment'));
 
 const UserDashboard = lazy(() => import('./pages/auth/UserDashboard'));
 const AllTeam = lazy(() => import('./pages/auth/team/AllTeam'));
+const TeamCreate = lazy(() => import('./pages/auth/team/TeamCreate'));
 const AllServices = lazy(() => import('./pages/auth/services/AllServices'));
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
           <Route exact path="/appointment" component={Appointment} />
           <UserRoute exact path="/dashboard" component={UserDashboard} />
           <UserRoute exact path="/dashboard/team" component={AllTeam} />
+          <UserRoute exact path="/dashboard/create-team-member" component={TeamCreate} />
           <UserRoute exact path="/dashboard/services" component={AllServices} />
         </Switch>
       </Router>
