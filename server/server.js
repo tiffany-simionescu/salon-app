@@ -24,6 +24,11 @@ app.use(morgan("dev"));
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cors());
 
+require('./models/user');
+require('./models/services');
+require('./models/team');
+require('./models/appointments');
+
 // routes middleware
 readdirSync('./routes').map((r) => {
   app.use('/api', require("./routes/" + r))

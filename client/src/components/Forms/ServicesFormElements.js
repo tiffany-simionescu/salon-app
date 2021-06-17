@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import "react-datepicker/dist/react-datepicker.css"
 
-export const TeamContainer = styled.form`
+export const ServicesContainer = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,7 +32,7 @@ export const TeamContainer = styled.form`
   }
 `;
 
-export const TeamWrap = styled.div`
+export const ServicesWrap = styled.div`
   display: flex;
   aligh-items: center;
   flex-direction: column;
@@ -46,13 +46,13 @@ export const TeamWrap = styled.div`
   letter-spacing: 0.4rem;
 `;
 
-export const TeamHeader = styled.h2`
+export const ServicesHeader = styled.h2`
   margin: 3rem 0 2rem 0;
   display: flex;
   justify-content: center;
 `;
 
-export const TeamInput = styled.input`
+export const ServicesInput = styled.input`
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border-radius: 2rem;
@@ -119,7 +119,7 @@ export const Button = styled.button`
   }
 `;
 
-export const TeamLink = styled(Link)`
+export const ServicesLink = styled(Link)`
   color: #fff;
   text-decoration: none;
   margin: 20px auto;
@@ -130,13 +130,13 @@ export const TeamLink = styled(Link)`
   }
 `;
 
-export const TeamText = styled.p`
+export const ServicesText = styled.p`
   color: #fff;
   font-size: 90%;
   padding-bottom: 20px;
   text-align: center;
 `;
 
-export const TeamInputContainer = styled.div`
+export const ServicesInputContainer = styled.div`
   display: flex;
 `;

@@ -5,7 +5,7 @@ const serviceSchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
-      required: 'Service Name is required',
+      // required: 'Service Name is required',
     },
     slug: {
       type: String,
@@ -17,4 +17,4 @@ const serviceSchema = new mongoose.Schema(
   {timestamps: true}
 );
 
-module.exports = mongoose.model('Services', serviceSchema);
+module.exports = mongoose.model('Service', serviceSchema);
