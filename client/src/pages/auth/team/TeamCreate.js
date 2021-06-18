@@ -6,7 +6,6 @@ import {
   getTeamMembers,
   createTeamMember,
   removeTeamMember,
-  getServices
 } from '../../../functions/dashboard';
 import TeamForm from '../../../components/Forms/TeamForm';
 import {
@@ -17,90 +16,83 @@ import {
   TeamCreateHeader
 } from './TeamCreateElements';
 
-const TeamCreate = () => {
-  const [memberName, setMemberName] = useState('');
-  // Change for cloudinary
-  const [img, setImg] = useState('');
-  const [instagram, setInstagram] = useState('');
-  const [bio, setBio] = useState('');
-  const [memberServices, setMemberServices] = useState([]);
+const initialState = {
+  memberName: '',
+  img: '',
+  instagram: '',
+  bio: '',
+  memberService: '',
+}
+
+const TeamCreate = ({ history }) => {
+  const [values, setValues] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [teamMembers, setTeamMembers] = useState([]);
-  const [services, setServices] = useState([]);
-  const [checked, setChecked] = useState(false);
 
   const { user } = useSelector((state) => ({ ...state }));
 
   useEffect(() => {
     loadTeamMembers();
-    loadServices();
   }, []);
 
   const loadTeamMembers = () => {
     getTeamMembers().then(res => setTeamMembers(res.data));
   };
 
-  const loadServices = () => {
-    getServices().then(res => setServices(res.data));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
 
-    createTeamMember(user.token, { memberName, img, instagram, bio, memberServices })
+    createTeamMember(user.token, values)
     .then(res => {
       setLoading(false);
-      setMemberName('');
-      setImg('');
-      setInstagram('');
-      setBio('');
-      setMemberServices([]);
-      toast.success(`The team member, ${memberName}, was created`);
-      loadTeamMembers();
+      toast.success(`The team member, ${res.data.memberName}, was created`);
+      history.push('/dashboard/team')
     })
     .catch(err => {
       setLoading(false);
-      if (err.response.status === 400) {
-        toast.error(err.response.data);
-      }
+      console.log(err);
+      // if (err.response.status === 400) {
+      //   toast.error(err.response.data);
+      // }
     });
   };
 
-  const handleNameChange = (e) => {
-    setMemberName(e.target.value);
-  };
-
-  const handleImgChange = (e) => {
-    setImg(e.target.value);
-  };
-
-  const handleInstagramChange = (e) => {
-    setInstagram(e.target.value);
-  };
-
-  const handleBioChange = (e) => {
-    setBio(e.target.value);
-  };
-
-  const handleCheckChange = () => {
-    setChecked(!checked);
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
   }
 
-  const handleMemberServicesChange = (e) => {
-    setChecked(!checked);
-    if (checked) {
-      setMemberServices(e.target.value);
-    }
-    console.log(e.target.value);
+  const handleNameChange = (n) => {
+    // setMemberName(e.target.value);
+    setValues({ ...values, memberName: n })
   };
 
-  const isInvalid = memberName === '' ||
-    memberName.length < 2 ||
-    img === '' ||
-    instagram === '' ||
-    bio === '' ||
-    memberServices === '';
+  const handleImgChange = (i) => {
+    // setImg(e.target.value);
+    setValues({ ...values, img: i })
+  };
+
+  const handleInstagramChange = (i) => {
+    // setInstagram(e.target.value);
+    setValues({ ...values, instagram: i })
+  };
+
+  const handleBioChange = (b) => {
+    // setBio(e.target.value);
+    setValues({ ...values, bio: b })
+  };
+
+  // const serviceOptions = services.map(function (s) {
+  //   // return s.serviceName;
+  //   return { value: s.serviceName, label: s.serviceName }
+  //   // return { slug: s.slug, serviceName: s.serviceName, label: s.serviceName }
+  // });
+  
+  const handleMemberServiceChange = (ms) => {
+    setValues({ ...values, memberService: ms });
+  };
+
+  const isInvalid = values === '';
 
   return (
     <TeamCreateContainer>
@@ -122,19 +114,14 @@ const TeamCreate = () => {
 
           <TeamForm 
             handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            setValues={setValues}
+            values={values}
             handleNameChange={handleNameChange}
             handleImgChange={handleImgChange}
             handleInstagramChange={handleInstagramChange}
             handleBioChange={handleBioChange}
-            handleMemberServicesChange={handleMemberServicesChange}
-            handleCheckChange={handleCheckChange}
-            memberName={memberName}
-            img={img}
-            instagram={instagram}
-            bio={bio}
-            services={services}
-            checked={checked}
-            memberServices={memberServices}
+            handleMemberServiceChange={handleMemberServiceChange}
             isInvalid={isInvalid}
           />
         </TeamCreateContent>

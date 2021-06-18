@@ -7,7 +7,6 @@ import RegisterCompleteForm from '../components/Forms/RegisterCompleteForm';
 
 const RegisterComplete = ({ history }) => {
   const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
 
   let dispatch = useDispatch();
@@ -19,18 +18,14 @@ const RegisterComplete = ({ history }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !password || !name) {
-      toast.error("Email, name, and password are required");
+    if (!email || !password) {
+      toast.error("Email and password are required");
       return;
     }
 
     if (password.length < 6) {
       toast.error("Password must be at least 6 characters long");
       return;
-    }
-
-    if (name.length < 2) {
-      toast.error("Name must be at least 2 characters long");
     }
 
     try {
@@ -50,7 +45,6 @@ const RegisterComplete = ({ history }) => {
             dispatch({
               type: "LOGGED_IN_USER",
               payload: {
-                name: res.data.name,
                 email: res.data.email,
                 token: idTokenResult.token,
                 _id: res.data._id,
@@ -71,8 +65,6 @@ const RegisterComplete = ({ history }) => {
       <RegisterCompleteForm
         handleSubmit={handleSubmit}
         email={email}
-        name={name}
-        setName={setName}
         password={password}
         setPassword={setPassword}
       />

@@ -77,9 +77,8 @@ const AllTeam = () => {
               <AllTeamText>
                 Bio: {member.bio}
               </AllTeamText>
-              {/* Update services later */}
               <AllTeamText>
-                Services: {member.services}
+                Service: {member.service}
               </AllTeamText>
             </AllTeamMemberContainer>
           ))}

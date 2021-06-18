@@ -38,26 +38,3 @@ export const removeTeamMember = async (authtoken, slug) => {
       }
     });
 };
-
-export const createService = async (authtoken, service) => {
-  return await axios.post(
-    `${process.env.REACT_APP_API}/services`, service, {
-      headers: {
-        authtoken,
-      },
-    });
-};
-
-export const getServices = async () => {
-  return await axios.get(
-    `${process.env.REACT_APP_API}/services`);
-};
-
-export const removeService = async (authtoken, slug) => {
-  return await axios.delete(
-    `${process.env.REACT_APP_API}/services/${slug}`, {
-      headers: {
-        authtoken,
-      }
-    });
-};

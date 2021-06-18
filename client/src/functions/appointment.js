@@ -12,9 +12,3 @@ export const getTeamMembers = async () => {
     `${process.env.REACT_APP_API}/team`
   );
 };
-
-export const getServices = async () => {
-  return await axios.get(
-    `${process.env.REACT_APP_API}/services`
-  );
-};

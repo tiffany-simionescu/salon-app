@@ -45,18 +45,6 @@ const UserNavbar = () => {
         </UserNavbarItem>
 
         <UserNavbarItem>
-          <UserNavbarLink to="/dashboard/services">
-            Services
-          </UserNavbarLink>
-        </UserNavbarItem>
-
-        <UserNavbarItem>
-          <UserNavbarLink to="/dashboard/create-service">
-            Add Service
-          </UserNavbarLink>
-        </UserNavbarItem>
-
-        <UserNavbarItem>
           <UserNavbarLink to="/dashboard/password">
             Password
           </UserNavbarLink>

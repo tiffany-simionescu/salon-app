@@ -1,4 +1,6 @@
 import React from 'react';
+// import { Select } from 'antd';
+// import Select from 'react-select';
 import {
   TeamContainer,
   TeamWrap,
@@ -6,26 +8,45 @@ import {
   TeamInput,
   Button,
   TeamLink,
-  TeamInputContainer
+  TeamInputContainer,
+  TeamLabel,
+  TeamSelect,
+  TeamOption,
 } from './TeamFormElements';
+
+// const { Option } = Select;
 
 const TeamForm = ({ 
   handleSubmit,
+  handleChange,
+  setValues,
+  values,
   handleNameChange,
   handleImgChange,
   handleInstagramChange,
   handleBioChange,
-  handleMemberServicesChange,
-  handleCheckChange,
-  memberName,
-  img,
-  instagram,
-  bio,
+  handleMemberServiceChange,
+  setServiceArray,
+  // setMemberService,
+  // memberName,
+  // img,
+  // instagram,
+  // bio,
   services,
-  memberServices,
-  checked,
-  isInvalid
+  // memberService,
+  isInvalid,
+  serviceOptions,
+  serviceArray
 }) => {
+
+  const {
+    memberName,
+    img,
+    instagram,
+    bio,
+    memberService
+  } = values;
+
   return (
     <TeamContainer onSubmit={handleSubmit}>
       <TeamWrap>
@@ -35,46 +56,63 @@ const TeamForm = ({
             <TeamInput 
               type="text"
               value={img}
-              onChange={handleImgChange}
+              onChange={e => handleImgChange(e.target.value)}
+              // onChange={handleImgChange}
+              // onChange={handleChange}
+              // onChange={target => setValues({ ...values, img: target.value })}
               placeholder="Image URL"
             />
             <TeamInput
               type="text"
               value={memberName}
-              onChange={handleNameChange} 
+              onChange={e => handleNameChange(e.target.value)}
+              // onChange={handleNameChange}
+              // onChange={handleChange}
+              // onChange={target => setValues({ ...values, memberName: target.value })} 
               placeholder="Name"
               autoFocus
             />
             <TeamInput
               type="text" 
               value={instagram}
-              onChange={handleInstagramChange}
+              onChange={e => handleInstagramChange(e.target.value)}
+              // onChange={handleInstagramChange}
+              // onChange={handleChange}
+              // onChange={target => setValues({ ...values, instagram: target.value })}
               placeholder="Instagram"
             />
             <TeamInput
               type="textarea" 
               value={bio}
-              onChange={handleBioChange}
+              onChange={e => handleBioChange(e.target.value)}
+              // onChange={handleBioChange}
+              // onChange={handleChange}
+              // onChange={target => setValues({ ...values, bio: target.value })}
               placeholder="About Team Member"
             />
-            {/* Select multiple services */}
-
-            {/* <TeamInput
-              type="text" 
-              value={memberServices}
-              onChange={handleMemberServicesChange}
-              placeholder="Service"
+            {/* <TeamSelect 
+              value={memberService}
+              options={serviceOptions} 
+              // onChange={value => setValues({ ...values, memberService: value })}
+              // onChange={handleChange}
+              // onChange={e => handleMemberServiceChange(e)}
+              onChange={e => handleMemberServiceChange(e.target.value)}
+              // onChange={setServiceArray}
+              // onChange={setMemberService}
+              labelledBy="Select" 
             /> */}
-            {services.map((s) => (
-              <input 
-                key={s._id}
-                id={s._id}
-                type="checkbox"
-                value={s._id}
-                checked={checked}
-                onChange={handleMemberServicesChange}
-              />
-            ))}
+              <TeamLabel>Service</TeamLabel>
+              <TeamSelect 
+                name="category" 
+                className="form-control"
+                value={memberService}
+                onChange={e => handleMemberServiceChange(e.target.value)}
+              >
+                <TeamOption>Please Select</TeamOption>
+                <TeamOption value="Hair / Color">Hair / Color</TeamOption>
+                <TeamOption value="Waxing">Waxing</TeamOption>
+                <TeamOption value="Lashes">Lashes</TeamOption>
+              </TeamSelect>
         </TeamInputContainer>
         <Button disabled={isInvalid}>Add Team Member</Button>
         <TeamLink to="/dashboard">Cancel</TeamLink>

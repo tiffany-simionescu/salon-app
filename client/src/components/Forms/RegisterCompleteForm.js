@@ -7,7 +7,7 @@ import {
   Button
 } from './RegisterCompleteFormElements';
 
-const RegisterCompleteForm = ({ handleSubmit, email, name, setName, password, setPassword}) => {
+const RegisterCompleteForm = ({ handleSubmit, email, password, setPassword}) => {
   return (
     <RegCompleteContainer onSubmit={handleSubmit}>
       <RegCompleteWrap>
@@ -16,13 +16,6 @@ const RegisterCompleteForm = ({ handleSubmit, email, name, setName, password, se
           type="email"
           value={email}
           disabled
-        />
-        <RegCompleteInput 
-          type="text"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          placeholder="Name"
-          autofocus
         />
         <RegCompleteInput 
           type="password"

@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import { validateEmail } from '../functions/auth';
 import { 
   createAppointment, 
-  getTeamMembers, 
-  getServices 
+  getTeamMembers,  
 } from '../functions/appointment';
 import AppointmentForm from '../components/Forms/AppointmentForm';
 
@@ -23,15 +22,10 @@ const Appointment = ({ history }) => {
 
   useEffect(() => {
     loadTeamMembers();
-    loadServices();
   }, []);
 
   const loadTeamMembers = () => {
     getTeamMembers().then(res => setTeamMembers(res.data));
-  };
-
-  const loadServices = () => {
-    getServices().then(res => setServices(res.data));
   };
 
   const isInvalid = name === '' ||
@@ -59,7 +53,6 @@ const Appointment = ({ history }) => {
     .then(res => {
       setLoading(false);
       loadTeamMembers();
-      loadServices();
       setName('');
       setEmail('');
       setPhone('');
