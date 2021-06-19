@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const AllTeamContainer = styled.div``;
 
@@ -15,3 +16,7 @@ export const AllTeamMemberContainer = styled.div``;
 export const AllTeamName = styled.h3``;
 
 export const AllTeamText = styled.p``;
+
+export const AllTeamDelete = styled.button``;
+
+export const AllTeamUpdate = styled(Link)``;

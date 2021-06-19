@@ -38,3 +38,18 @@ export const removeTeamMember = async (authtoken, slug) => {
       }
     });
 };
+
+export const getTeamMember = async (slug) => {
+  return await axios.get(
+    `${process.env.REACT_APP_API}/team/${slug}`
+  );
+};
+
+export const updateTeamMember = async (authtoken, slug, teamMember) => {
+  return await axios.put(`${process.env.REACT_APP_API}/team/${slug}`, 
+  teamMember, {
+    headers: {
+      authtoken,
+    },
+  });
+};

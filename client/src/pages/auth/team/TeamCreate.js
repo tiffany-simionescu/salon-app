@@ -7,7 +7,7 @@ import {
   createTeamMember,
   removeTeamMember,
 } from '../../../functions/dashboard';
-import TeamForm from '../../../components/Forms/TeamForm';
+import TeamCreateForm from '../../../components/Forms/TeamCreateForm';
 import {
   TeamCreateContainer,
   TeamCreateWrap,
@@ -112,7 +112,7 @@ const TeamCreate = ({ history }) => {
             </TeamCreateHeader>
           )}
 
-          <TeamForm 
+          <TeamCreateForm 
             handleSubmit={handleSubmit}
             handleChange={handleChange}
             setValues={setValues}

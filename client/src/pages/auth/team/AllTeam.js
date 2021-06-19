@@ -7,7 +7,9 @@ import {
   AllTeamHeader,
   AllTeamMemberContainer,
   AllTeamName,
-  AllTeamText
+  AllTeamText,
+  AllTeamDelete,
+  AllTeamUpdate
 } from './AllTeamElements';
 import UserNavbar from '../../../components/Navbar/UserNavbar';
 import { 
@@ -80,6 +82,12 @@ const AllTeam = () => {
               <AllTeamText>
                 Service: {member.memberService}
               </AllTeamText>
+              <AllTeamUpdate to={`/dashboard/team/${member.slug}`}>
+                Update
+              </AllTeamUpdate>
+              <AllTeamDelete onClick={() => handleRemove(member.slug)}>
+                Remove
+              </AllTeamDelete>
             </AllTeamMemberContainer>
           ))}
         </AllTeamContent>

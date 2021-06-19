@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import "react-datepicker/dist/react-datepicker.css"
-// import Select from 'react-select';
-import MultiSelect from 'react-multi-select-component';
 
 export const TeamContainer = styled.form`
   display: flex;
@@ -145,8 +142,6 @@ export const TeamInputContainer = styled.div`
 `;
 
 export const TeamLabel = styled.label``;
-
-// export const TeamSelect = styled.select``;
 
 export const TeamOption = styled.option``;
 

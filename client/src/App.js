@@ -17,6 +17,7 @@ const Appointment = lazy(() => import('./pages/Appointment'));
 const UserDashboard = lazy(() => import('./pages/auth/UserDashboard'));
 const AllTeam = lazy(() => import('./pages/auth/team/AllTeam'));
 const TeamCreate = lazy(() => import('./pages/auth/team/TeamCreate'));
+const TeamUpdate = lazy(() => import('./pages/auth/team/TeamUpdate'));
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ function App() {
           <UserRoute exact path="/dashboard" component={UserDashboard} />
           <UserRoute exact path="/dashboard/team" component={AllTeam} />
           <UserRoute exact path="/dashboard/create-team-member" component={TeamCreate} />
+          <UserRoute exact path="/dashboard/team/:slug" component={TeamUpdate} />
         </Switch>
       </Router>
     </Suspense>
