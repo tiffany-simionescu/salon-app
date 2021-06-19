@@ -180,3 +180,9 @@ export const AppointmentLeftContainer = styled.div`
 
 export const AppointmentRightContainer = styled.div`
 `;
+
+export const AppointmentLabel = styled.label``;
+
+export const AppointmentSelect = styled.select``;
+
+export const AppointmentOption = styled.option``;

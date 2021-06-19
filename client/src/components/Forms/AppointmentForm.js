@@ -9,18 +9,18 @@ import {
   AppointmentDatePicker,
   AppointmentLeftContainer,
   AppointmentRightContainer,
-  AppointmentInputContainer
+  AppointmentInputContainer,
+  AppointmentLabel,
+  AppointmentSelect,
+  AppointmentOption,
 } from './AppointmentFormElements';
 import "react-datepicker/dist/react-datepicker.css"
 
 const AppointmentForm = ({ 
   isInvalid,
-  name,
-  email,
-  phone,
-  date,
-  teamMember,
-  service,
+  values,
+  setValues,
+  teamMembers,
   handleNameChange,
   handleEmailChange,
   handlePhoneChange,
@@ -29,6 +29,14 @@ const AppointmentForm = ({
   handleServiceChange,
   handleSubmit 
 }) => {
+  const {
+    clientName,
+    clientEmail,
+    phone,
+    date,
+    teamMember,
+    service
+  } = values;
   return (
     <AppointmentContainer onSubmit={handleSubmit}>
       <AppointmentWrap>
@@ -37,21 +45,21 @@ const AppointmentForm = ({
           <AppointmentLeftContainer>
             <AppointmentInput
               type="text"
-              value={name}
-              onChange={handleNameChange} 
+              value={clientName}
+              onChange={e => handleNameChange(e.target.value)} 
               placeholder="Name"
               autoFocus
             />
             <AppointmentInput
               type="email"
-              value={email}
-              onChange={handleEmailChange} 
+              value={clientEmail}
+              onChange={e => handleEmailChange(e.target.value)} 
               placeholder="Email address"
             />
             <AppointmentInput
               type="number" 
               value={phone}
-              onChange={handlePhoneChange}
+              onChange={e => handlePhoneChange(e.target.value)}
               placeholder="Phone Number"
             />
           </AppointmentLeftContainer>
@@ -59,27 +67,40 @@ const AppointmentForm = ({
             <AppointmentDatePicker
               dateFormat="MM/dd/yyyy h:mm aa"
               selected={date} 
-              onChange={handleDateChange}
-              showTimeSelect
-              // filterTime={}
+              value={date}
+              onChange={e => handleDateChange(e)}
+              showTimeSelect={true}
             />
-            {/* Drop down Menu that maps over teamMembers */}
-            <AppointmentInput
-              type="text" 
-              value={teamMember}
-              onChange={handleTeamMemberChange}
-              placeholder="Team Member"
-            />
-            {/* Drop down Menu that maps over services */}
-            <AppointmentInput
-              type="text" 
-              value={service}
-              onChange={handleServiceChange}
-              placeholder="Service"
-            />
+            <AppointmentLabel>Team Member</AppointmentLabel>
+              <AppointmentSelect 
+                name="teamMember" 
+                value={teamMember}
+                onChange={e => handleTeamMemberChange(e.target.value)}
+                // onChange={e => setValues({ ...values, teamMember: e.target.value})}
+              >
+                <AppointmentOption>Please Select</AppointmentOption>
+                {teamMembers.map(tm => (
+                  <AppointmentOption key={tm._id} value={tm.memberName}>
+                    {tm.memberName}
+                  </AppointmentOption>
+                ))}
+              </AppointmentSelect>
+             <AppointmentLabel>Service</AppointmentLabel>
+              <AppointmentSelect 
+                name="service" 
+                value={service}
+                onChange={e => handleServiceChange(e.target.value)}
+                // onChange={e => setValues({ ...values, service: e.target.value})}
+              >
+                <AppointmentOption>Please Select</AppointmentOption>
+                <AppointmentOption value="Hair / Color">Hair / Color</AppointmentOption>
+                <AppointmentOption value="Waxing">Waxing</AppointmentOption>
+                <AppointmentOption value="Lashes">Lashes</AppointmentOption>
+              </AppointmentSelect>
           </AppointmentRightContainer>
         </AppointmentInputContainer>
-        <Button disabled={isInvalid}>Book Appointment</Button>
+        {/* <Button disabled={isInvalid}>Book Appointment</Button> */}
+        <Button>Book Appointment</Button>
         <AppointmentLink to="/">Cancel</AppointmentLink>
       </AppointmentWrap>
     </AppointmentContainer>

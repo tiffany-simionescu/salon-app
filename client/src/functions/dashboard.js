@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const getAppointments = async (authtoken) => {
-  return await axios.get(`${process.env.REACT_APP_API}/appointments`, {
+  return await axios.get(`${process.env.REACT_APP_API}/appointment`, {
     headers: {
       authtoken,
     },
@@ -9,7 +9,7 @@ export const getAppointments = async (authtoken) => {
 };
 
 export const removeAppointment = async (authtoken, appointmentId) => {
-  return await axios.delete(`${process.env.REACT_APP_API}/appointments/${appointmentId}`, {
+  return await axios.delete(`${process.env.REACT_APP_API}/appointment/${appointmentId}`, {
     headers: {
       authtoken,
     }

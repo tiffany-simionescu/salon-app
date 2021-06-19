@@ -2,8 +2,7 @@ import axios from 'axios';
 
 export const createAppointment = async (appointment) => {
   return await axios.post(
-    `${process.env.REACT_APP_API}/appointments`,
-    { appointment }
+    `${process.env.REACT_APP_API}/appointment`, appointment
   );
 };
 

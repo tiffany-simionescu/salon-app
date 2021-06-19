@@ -8,16 +8,18 @@ import {
 } from '../functions/appointment';
 import AppointmentForm from '../components/Forms/AppointmentForm';
 
+const initialState = {
+  clientName: '',
+  clientEmail: '',
+  phone: '',
+  date: new Date(),
+  teamMember: '',
+  service: ''
+}
+
 const Appointment = ({ history }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState('');
+  const [values, setValues] = useState(initialState);
   const [teamMembers, setTeamMembers] = useState([]);
-  const [teamMember, setTeamMember] = useState('');
-  const [services, setServices] = useState([]);
-  const [service, setService] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -28,91 +30,54 @@ const Appointment = ({ history }) => {
     getTeamMembers().then(res => setTeamMembers(res.data));
   };
 
-  const isInvalid = name === '' ||
-    name.length < 2 ||
-    email === '' ||
-    !validateEmail(email) ||
-    phone.length < 10 ||
-    phone.length > 10;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    if (isInvalid || !date || !time || !teamMember || !service) {
-      toast.error("Name, email, phone number, date, time, team member, and service is required");
-      return;
-    }
-
-    if (isInvalid) {
-      toast.error("There was an error. Please try again.");
-      return;
-    };
-
-    createAppointment({ name, email, phone, date, time, teamMember, service})
+    createAppointment(values)
     .then(res => {
       setLoading(false);
-      loadTeamMembers();
-      setName('');
-      setEmail('');
-      setPhone('');
-      setDate(new Date());
-      setTime('');
-      setTeamMember('');
-      setService('');
-      toast.success("Your appointment was created")
+      toast.success(`The appointment was created`);
+      history.push('/')
     })
     .catch(err => {
-      console.log(err);
+      console.log(err.message);
       setLoading(false);
       toast.error("There was a problem creating your appointment. Please try again.");
     })
   };
 
-  const handleNameChange = (e) => {
-    if (e.target.value.length > 32) {
-      toast.error("Name is too long. Max length is 32 characters");
-    } else {
-      setName(e.target.value);
-    }
+  const handleNameChange = (n) => {
+    setValues({ ...values, clientName: n })
   };
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    setValues({ ...values, clientEmail: e })
   };
 
-  const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
+  const handlePhoneChange = (p) => {
+    setValues({ ...values, phone: p })
   };
 
-  const handleDateChange = (date) => {
-    let hour = date.getHours();
-    let min = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
-    let newTime = `${hour}:${min}`;
-    setTime(newTime);
-    // console.log('Time --> ', newTime);
-    setDate(date);
-    // console.log("Date --> ", date);
+  const handleDateChange = (d) => {
+    setValues({ ...values, date: d });
   };
 
-  const handleTeamMemberChange = (e) => {
-    setTeamMember(e.target.value);
+  const handleTeamMemberChange = (tm) => {
+    setValues({ ...values, teamMember: tm })
   };
 
-  const handleServiceChange = (e) => {
-    setService(e.target.value);
+  const handleServiceChange = (s) => {
+    setValues({ ...values, service: s })
   };
 
   return (
     <>
       <AppointmentForm 
-        isInvalid={isInvalid}
-        name={name}
-        email={email}
-        phone={phone}
-        date={date}
-        teamMember={teamMember}
-        service={service}
+        // isInvalid={isInvalid}
+        teamMembers={teamMembers}
+        values={values}
+        setValues={setValues}
         handleNameChange={handleNameChange}
         handleEmailChange={handleEmailChange}
         handlePhoneChange={handlePhoneChange}

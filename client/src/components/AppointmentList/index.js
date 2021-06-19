@@ -11,14 +11,15 @@ import {
 const AppointmentList = ({ appointments, handleRemove }) => {
   return (
     <>
+      {JSON.stringify(appointments)}
       {appointments.map((appointment) => (
         <AppointmentContainer key={appointment._id}>
           <AppointmentWrap>
             <AppointmentName>
-              Name: {appointment.name}
+              Name: {appointment.clientName}
             </AppointmentName>
             <AppointmentText>
-              Email: {appointment.email}
+              Email: {appointment.clientEmail}
             </AppointmentText>
             <AppointmentText>
               Phone: {appointment.phone}
@@ -36,12 +37,12 @@ const AppointmentList = ({ appointments, handleRemove }) => {
               Service: {appointment.service}
             </AppointmentText>
             <AppointmentLink 
-              to={`/dashboard/appointment/${appointment._id}`}
+              to={`/dashboard/appointment/${appointment.appointmentId}`}
             >
               Edit
             </AppointmentLink>
             <AppointmentDelete 
-              onClick={() => handleRemove(appointment._id)}
+              onClick={() => handleRemove(appointment.appointmentId)}
             />
           </AppointmentWrap>
         </AppointmentContainer>
