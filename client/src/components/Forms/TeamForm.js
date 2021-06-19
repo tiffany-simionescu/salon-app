@@ -106,7 +106,8 @@ const TeamForm = ({
                 name="category" 
                 className="form-control"
                 value={memberService}
-                onChange={e => handleMemberServiceChange(e.target.value)}
+                onChange={e => setValues({ ...values, memberService: e.target.value})}
+                // onChange={e => handleMemberServiceChange(e.target.value)}
               >
                 <TeamOption>Please Select</TeamOption>
                 <TeamOption value="Hair / Color">Hair / Color</TeamOption>

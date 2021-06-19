@@ -78,7 +78,7 @@ const AllTeam = () => {
                 Bio: {member.bio}
               </AllTeamText>
               <AllTeamText>
-                Service: {member.service}
+                Service: {member.memberService}
               </AllTeamText>
             </AllTeamMemberContainer>
           ))}
